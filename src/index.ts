@@ -1,6 +1,4 @@
 import { users } from "./data";
 
-console.log("Welcome to SkillTrack Pro 🚀");
+import './utils';
 
-
-console.log("List of Users:", users);
