@@ -1,12 +1,21 @@
 import type { User } from "./types";
 import { users } from "./data";
 
+// যে function শুধু display করবে। oi gula e utils function e thakbe. jar dara data change hobe na.
+// printUsers()
+
+// printSkills()
+
+// printLine()
+
+// এগুলো কোনো data change করবে না।
+
 
 export function printLine(): void {
   console.log("--------------------------------");
 }
 
-function printUsers(users: User[]): void {
+export function printUsers(users: User[]): void {
     printLine();
     console.log("Users");
     printLine();
@@ -18,7 +27,7 @@ function printUsers(users: User[]): void {
 printUsers(users);
 
 
-function printSkills(skills: User["skills"]): void {
+export function printSkills(skills: User["skills"]): void {
     printLine();
     console.log("Skills");
     printLine();
