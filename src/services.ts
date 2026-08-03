@@ -85,7 +85,6 @@ export function updateSkill(userId: number, skillId: number, updatedSkill: Parti
 
 updateSkill(1, 2, { name: "Shopify App", level: SkillLevel.Advanced, status: SkillStatus.Active });
 
-updateSkill(2, 5, { name: "GraphQL API", level: SkillLevel.Intermediate, status: SkillStatus.Active });
 
 // Function to update skill level for a user
 
@@ -108,3 +107,30 @@ updateSkill(2, 5, { name: "GraphQL API", level: SkillLevel.Intermediate, status:
 // }
 
 // updateSkillLevel(1, 1, SkillLevel.Beginner); 
+
+// Function to archive a skill for a user
+export function archiveSkill(userId: number, skillId: number): boolean {
+  const user = findUserById(userId);
+  if (!user) {
+    console.error("User not found");
+    return false;
+  }
+
+  const skill = user.skills.find((s) => s.id === skillId);
+  if (!skill) {
+    console.error("Skill not found");
+    return false;
+  }
+
+  skill.status = SkillStatus.Archived;
+  skill.updatedAt = new Date();
+  return true;
+}
+
+archiveSkill(2, 6); 
+
+// Get active skills for a user
+export function getActiveSkills(skills: Skill[]): Skill[] | undefined {
+  
+  return skills.filter((skill) => skill.status === SkillStatus.Active);
+}

@@ -1,5 +1,6 @@
-import type { User } from "./types";
+import type { Skill, User } from "./types";
 import { users } from "./data";
+import { getActiveSkills } from "./services";
 
 // যে function শুধু display করবে। oi gula e utils function e thakbe. jar dara data change hobe na.
 // printUsers()
@@ -31,10 +32,13 @@ export function printSkills(skills: User["skills"]): void {
     printLine();
     console.log("Skills");
     printLine();
-    skills.forEach(skill => {
-        console.log(`Skill: ${skill.name}, Level: ${skill.level}, Status: ${skill.status}`);
+
+    const activeSkills: Skill[] | undefined = getActiveSkills(skills); // Use the service function to get active skills
+
+    activeSkills?.forEach(skill => {
+        console.log(`id: ${skill.id}, Name: ${skill.name}, Level: ${skill.level}, Status: ${skill.status}`);
     });
 }
 
 
-printSkills(users[0].skills);
+printSkills(users[1].skills);
