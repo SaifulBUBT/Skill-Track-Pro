@@ -5,4 +5,4 @@ import './utils';
 import './services';
 
 
-console.log(users[0].skills);
+console.log(users[1].skills);

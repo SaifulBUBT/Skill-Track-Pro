@@ -26,6 +26,7 @@ export function findUserById(userId: number): User | undefined {
   return users.find((user) => user.id === userId);
 }
 
+// Function to add a new skill to a user
 export function addSkill(userId: number, skill: Skill): boolean {
 
   const user = findUserById(userId); // Find the user by ID
@@ -35,7 +36,7 @@ export function addSkill(userId: number, skill: Skill): boolean {
   }
 
   // Check if the skill already exists for the user
-  const existingSkill = user.skills.find((s) => s.name === skill.name);
+  const existingSkill = user.skills.find((s) => s.name.toLowerCase() === skill.name.toLowerCase());
   if (existingSkill) {
     console.error(`Skill "${skill.name}" already exists for this user`);
     return false;
@@ -62,3 +63,48 @@ addSkill(1, {
   createdAt: new Date(),
   updatedAt: new Date()
 });
+
+
+// Function to update an existing skill for a user
+export function updateSkill(userId: number, skillId: number, updatedSkill: Partial<Skill>): boolean {
+  const user = findUserById(userId);
+  if (!user) {
+    console.error("User not found");
+    return false;
+  } 
+  
+  const skillIndex = user.skills.findIndex((s) => s.id === skillId);
+  if (skillIndex === -1) {
+    console.error("Skill not found");
+    return false;
+  } 
+
+  user.skills[skillIndex] = { ...user.skills[skillIndex], ...updatedSkill, updatedAt: new Date() };
+  return true;
+}
+
+updateSkill(1, 2, { name: "Shopify App", level: SkillLevel.Advanced, status: SkillStatus.Active });
+
+updateSkill(2, 5, { name: "GraphQL API", level: SkillLevel.Intermediate, status: SkillStatus.Active });
+
+// Function to update skill level for a user
+
+// export function updateSkillLevel(userId: number, skillId: number, newLevel: SkillLevel): boolean {
+//   const user = findUserById(userId);
+//   if (!user) {
+//     console.error("User not found");
+//     return false;
+//   }
+
+//   const skill = user.skills.find((s) => s.id === skillId);
+//   if (!skill) {
+//     console.error("Skill not found");
+//     return false;
+//   }
+
+//   skill.level = newLevel;
+//   skill.updatedAt = new Date();
+//   return true;
+// }
+
+// updateSkillLevel(1, 1, SkillLevel.Beginner); 
