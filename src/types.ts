@@ -21,3 +21,8 @@ export type User = {
 
 //Tuple type to represent skill statistics
 export type SkillStatistics = [number, SkillLevel] // Represents the count of skills at a specific level
+
+export type SearchResult = {
+  user: User;
+  skill: Skill;
+};

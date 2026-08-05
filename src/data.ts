@@ -63,6 +63,14 @@ export const users: User[] = [
                 status: SkillStatus.Active,
                 createdAt: new Date(),
                 updatedAt: new Date()
+            },
+            {
+                id: 7,
+                name: "TypeScript",
+                level: SkillLevel.Advanced,
+                status: SkillStatus.Active,
+                createdAt: new Date(),
+                updatedAt: new Date()
             }
         ],
         createdAt: new Date(),

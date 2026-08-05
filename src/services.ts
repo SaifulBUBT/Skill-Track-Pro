@@ -18,7 +18,7 @@
 // services = Business Logic
 
 import { users } from "./data";
-import type { User, Skill } from "./types";
+import type { User, Skill, SearchResult } from "./types";
 import { SkillLevel, SkillStatus } from "./enums";
 
 
@@ -134,3 +134,23 @@ export function getActiveSkills(skills: Skill[]): Skill[] | undefined {
   
   return skills.filter((skill) => skill.status === SkillStatus.Active);
 }
+
+
+// Function to search for a skill across all users
+export function searchSkill(keyword: string): SearchResult[] {
+  const results: SearchResult[] = [];
+
+  const searchKeyword = keyword.toLowerCase().trim();
+
+  users.forEach((user) => {
+    user.skills.forEach((skill) => {
+      if(skill.status === SkillStatus.Active && skill.name.toLowerCase().includes(searchKeyword)) { 
+        results.push({ user: user, skill: skill });
+      }
+    });
+  });
+
+  return results;
+} 
+
+console.log("Search result: ",searchSkill("TypeScript"));
