@@ -1,3 +1,5 @@
+// Utility Type হলো TypeScript-এর তৈরি করা এমন কিছু built-in type, যেগুলো ব্যবহার করে existing type থেকে নতুন type সহজে তৈরি করা যায়।
+
 // Record<keyType, valueType>
 
 type User = {
