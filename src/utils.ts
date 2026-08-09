@@ -25,7 +25,7 @@ export function printUsers(users: User[]): void {
         console.log(`Name: ${user.name}`);
     });
 }
-printUsers(users);
+//printUsers(users);
 
 
 export function printSkills(skills: User["skills"]): void {
@@ -41,4 +41,4 @@ export function printSkills(skills: User["skills"]): void {
 }
 
 
-printSkills(users[1].skills);
+//printSkills(users[1].skills);
