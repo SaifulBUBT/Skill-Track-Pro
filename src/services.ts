@@ -130,11 +130,22 @@ export function archiveSkill(userId: number, skillId: number): boolean {
 archiveSkill(2, 6); 
 
 // Get active skills for a user
-export function getActiveSkills(skills: Skill[]): Skill[] | undefined {
+// export function getActiveSkills(skills: Skill[]): Skill[] | undefined {
   
-  return skills.filter((skill) => skill.status === SkillStatus.Active);
+//   return skills.filter((skill) => skill.status === SkillStatus.Active);
+// }
+
+export function getActiveSkills(userId: number): Skill[] | undefined {
+  const user = findUserById(userId);
+  console.log("User found: ", user.name);
+  if (!user) {
+    console.error("User not found");
+    return [];
+  }
+  return user.skills.filter((skill) => skill.status === SkillStatus.Active);
 }
 
+console.log("Active skills for userId 2: ", getActiveSkills(2));
 
 // Function to search for a skill across all users
 export function searchSkill(keyword: string): SearchResult[] {

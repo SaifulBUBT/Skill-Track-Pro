@@ -1,8 +1,8 @@
 import { users } from "./data";
 
-import './utils';
 
 import './services';
 
+import './generics';
 
-console.log(users[1].skills);
+console.log('hello', users[1].skills);
