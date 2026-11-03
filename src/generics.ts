@@ -60,7 +60,7 @@ console.log("Person Box: ", personBox);
 
 //*************/ */
 interface ApiResponse<T> {
-    data: T;
+    data: T;     
     success: boolean;
     message: string;
 }
