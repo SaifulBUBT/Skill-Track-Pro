@@ -1,8 +1,10 @@
-import { users } from "./data";
+// import { users } from "./data";
 
 
-import './services';
+// import './services';
 
-import './generics';
+// import './generics';
 
-console.log('hello', users[1].skills);
+// console.log('hello', users[1].skills);
+
+import './api';
