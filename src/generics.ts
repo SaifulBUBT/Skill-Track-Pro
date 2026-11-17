@@ -171,3 +171,23 @@ console.log("User Admin Name: ", getUserAdminProperty(userAdmin, "name"));
 console.log("User Admin Phone: ", getUserAdminProperty(userAdmin, "phone"));
 console.log("User Admin Email: ", getUserAdminProperty(userAdmin, "email"));
 console.log("User Admin Role: ", getUserAdminProperty(userAdmin, "role"));
+
+
+type Product3 = {
+  id: number;
+  name: string;
+  price: number;
+  inStock: boolean;
+};
+
+type ProductKeys = keyof Product3; // "id" | "name" | "price" | "inStock"
+type ProductValues = Product3[keyof Product3];
+
+function getProductProperty<T, k extends keyof T>(product: T, key: k): T[k] {
+  return product[key];
+}
+
+const product: Product3 = { id: 1, name: "Laptop", price: 1200, inStock: true };
+console.log("Product Name: ", getProductProperty(product, "name"));
+console.log("Product Price: ", getProductProperty(product, "price"));
+console.log("Product In Stock: ", getProductProperty(product, "inStock"));
