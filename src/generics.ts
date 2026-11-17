@@ -112,3 +112,62 @@ const API_ENDPOINTS = {
 } as const;
 
 type EndpointName = keyof typeof API_ENDPOINTS;
+type EndpontKeys = keyof typeof API_ENDPOINTS;
+type EndpointValues = typeof API_ENDPOINTS[keyof typeof API_ENDPOINTS];
+ const endpoint: EndpointValues = "/api/orders"; // Valid
+ console.log("API Endpoint: ", endpoint);
+
+
+/******=== keyof with Union & Intersection Types ==*** */
+type User2 = {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+};
+
+type Admin = {
+  id: number;
+  name: string;
+  role: string;
+  phone: string;
+};
+
+type Person2 = User2 | Admin;
+
+type PersonKeys = keyof Person2; // "id" | "name" | "phone" |
+
+function getPersonProperty<T extends Person2>(person: T, key: PersonKeys) {
+  return person[key];
+}
+
+const user: User2 = { id: 1, name: "Alice", phone: "123-456-7890", email: "alice@example.com" };
+
+console.log("User Name: ", getPersonProperty(user, "name"));
+console.log("User Phone: ", getPersonProperty(user, "phone"));
+console.log("User Email: ", getPersonProperty(user, "email")); // invalid
+
+
+
+// keyof with Intersection Types (&)
+type UserAdmin = User2 & Admin;
+
+type UserAdminKeys = keyof UserAdmin; // "id" | "name" | "phone" | "email" | "role"
+
+function getUserAdminProperty<T extends UserAdmin>(userAdmin: T, key: UserAdminKeys) {
+  return userAdmin[key];
+}
+
+const userAdmin: UserAdmin = {
+  id: 1,
+  name: "Alice",
+  phone: "123-456-7890",
+  email: "hello@example.com",
+  role: "Admin" 
+};
+
+console.log("User Admin ID: ", getUserAdminProperty(userAdmin, "id"));
+console.log("User Admin Name: ", getUserAdminProperty(userAdmin, "name"));
+console.log("User Admin Phone: ", getUserAdminProperty(userAdmin, "phone"));
+console.log("User Admin Email: ", getUserAdminProperty(userAdmin, "email"));
+console.log("User Admin Role: ", getUserAdminProperty(userAdmin, "role"));
